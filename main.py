@@ -34,7 +34,7 @@ def count(update, context):
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
 
-    update.callback_query(reply_markup=reply_markup) 
+    update.callback_query.edit_message_reply_markup(reply_markup=reply_markup) 
 
 
 updater = Updater(TOKEN)  
