@@ -4,7 +4,9 @@ import os
 
 votes = {
     "likes": 0, 
-    "dislikes": 0
+    "dislikes": 0,
+    "fire": 0,
+    "hello": 0
     }
 
 TOKEN = os.getenv("TOKEN")
@@ -15,7 +17,9 @@ def start(update, context):
 
     keyboard = [
         [InlineKeyboardButton(f"👍 Like {votes['likes']}", callback_data="like")],
-        [InlineKeyboardButton(f"👎  Dislike {votes['dislikes']}", callback_data="dislike")]
+        [InlineKeyboardButton(f"👎  Dislike {votes['dislikes']}", callback_data="dislike")],
+        [InlineKeyboardButton(f"🔥 Fire {votes['fire']}", callback_data="fire")],
+        [InlineKeyboardButton(f"👋🏻 Hello {votes['hello']}", callback_data="hello")],
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
 
@@ -27,10 +31,16 @@ def count(update, context):
         votes["likes"] += 1
     elif update.callback_query.data == "dislike":
         votes["dislikes"] += 1
+    elif update.callback_query.data == "fire":
+        votes["fire"] += 1
+    elif update.callback_query.data == "hello":
+        votes["hello"] += 1    
 
     keyboard = [
         [InlineKeyboardButton(f"👍 Like {votes['likes']}", callback_data="like")],
-        [InlineKeyboardButton(f"👎 Dislike {votes['dislikes']}", callback_data="dislike")]
+        [InlineKeyboardButton(f"👎 Dislike {votes['dislikes']}", callback_data="dislike")],
+        [InlineKeyboardButton(f"🔥 Fire {votes['fire']}", callback_data="fire")],
+        [InlineKeyboardButton(f"👋🏻 Hello {votes['hello']}", callback_data="hello")]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
 
